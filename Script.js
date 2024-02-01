@@ -1,34 +1,35 @@
-//Regular expresion : 
-//Pattern Matching : 
-
 let re;
 let str;
 
-re = /hello/i; // case insensitive 
+//Literal character: 
+re = /emnei/i;
+str = "hello world"
 
-console.log(re)
-console.log(re.source)
+//Meta characters;
+re = /^hello/i ; // Must start with the caret symbol 
+re = /hello$/i ; // must end with dollar sign word.
+re = /^hello$/i; //must start with hello word for caret sign and must end with hello word for dolar sign.
+re = /^h.llo$/i ; //match any character one positon of dot.
+re = /h*llo/; // 0 or more character can have there.
+re = /he?llo/
+re = /he?a?llo/i; // optional character
+re = /hello\?/i;
 
-str = 'hello world'
-str = "again hello world"
-str = "lskdjfrrhellomnks kshfr"
+str = "hello";
+str = "hyllo";
+str = "hksdhfjshfhsllo";
+str = "hello"
+str = "hllo"
+str = "hello\?"
 
-//exec() - returns rsult in an array or null
-let result = re.exec(str)
+console.log(re.exec(str));
+reTest(re,str)
 
-// test() - true/ false
-result = re.test(str)
-
-//match() - Returns array or null: 
-result = str.match(re)
-
-//search() - Returns index of the first match or -1
-result = str.search(re)
-
-//replace() - Return new string
-str = "Again Hello world"
-let new_str = str.replace(re,'Hi')
-
-console.log(new_str)
-
-console.log(result)
+function reTest(r,s){
+    if(re.test(str)){
+        console.log(`${str} matches ${re.source}`)
+    }
+    else{
+        console.log(`${str} dosen't matches ${re.source}`)
+    }
+}
