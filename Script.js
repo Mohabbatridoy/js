@@ -18,6 +18,10 @@ re = /^01[0-9]{9}$/;
 re = /^\+8801[0-9]{9}$/;
 re = /([0-9]x){3}/;
 
+
+
+
+
 let str = "hello"
 str = "ello"
 str = "mqkello"
@@ -34,6 +38,31 @@ str = "01997058623"
 str = "+8801997058623"
 str = "2x3x4x"
 
+//shorthand character
+re = /\w/; //Word character - alpha numeric or__
+re = /\w+/  // + sign in shorthand character means on or more
+re = /\W/ ; // non word character 
+re = /\d/ ; // digit character 
+re = /\D/ ;  // non digit 
+re = /\s/ ;  //Match white space
+re = /\S/ ; // Match non white space;
+re = /hello\b/ ; // Word boundary
+re = /\bhello\b/; 
+
+
+str = "(8";
+str = "sf9)("
+str = "ldfg"
+str = "dlfjjsdk"
+str = "   "
+str = "hello"
+
+
+//assertions
+re = /x(?=y)/; //Matchers x only if x is before y
+re = /x(?!y)/; 
+
+str = "yxyjsdfy"
 
 console.log(re.test(str))
 reTest(re,str)
