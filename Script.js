@@ -1,20 +1,40 @@
-//Examples: 
-let re ;
-let str; 
+// //Json - Javascript Object Notation
+// var student = {
+//     name: "Mohabbat",
+//     age: 21,
+//     homtown: "Jamalpur"
+// }
+// console.log(`Object: ${student}`)
+// var studet_json = JSON.stringify(student);
 
 
-//Postal code
-re = /^[0-9]{4}$/
-str = "4000"
+// console.log(`Json: ${studet_json}`)
 
-//phone number
-re = /^(\+88)?01[0-9]{9}$/
-str = "01997058623"
-
-//email address
-//bohubrihi.learn@edu.bd
-re = /^([a-zA-Z0-9]\.?)+[^\.]@([a-zA-Z0-9]\.?)+[^\.]$/
-str = "bohubrihi.learn@edu.bd"
+// var student_new = JSON.parse(studet_json)
+// console.log("object",student_new)
 
 
-console.log(re.test(str))
+//Json support 5 types of data :
+//string
+//number
+//object
+//array
+//boolean
+//null
+
+var person = {
+    name: "Mohabbat",  //string
+    age: 21,            //Number
+    homtown: "Jamalpur", 
+    married: false,  //Boolean
+    dob: 1995-5-12, //Date
+    tes_null: null,  //null
+    test_undefined: undefined, 
+    greet: function(){         //function
+        console.log(`hello ${this.name}`)
+    }
+}
+person.greet()
+
+var person_json = JSON.stringify(person)
+console.log(person_json)
