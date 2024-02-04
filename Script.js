@@ -1,31 +1,31 @@
-//Json.stringify() - js object to json string
-//Json.parse() - Json string to js object.
 
-var xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-        var data = this.responseText;
-        // console.log(data);
-        jsonData(data);
-    }
-};
-xmlhttp.open("GET", "data.json", true);
-xmlhttp.send();
+//Asynchronous Programming 
+// AJAX = Asynchoronous Javascript and XML
+//get data without loading the page
 
+document.getElementById('get_data').addEventListener('click', loadData);
 
-function jsonData(json_obj){
-    // console.log(json_obj)
-    var js_obj = JSON.parse(json_obj)
-    // console.log(js_obj)
+function loadData(){
 
-    for( i in js_obj.person){
-        // console.log(i)
-        var persons = js_obj.person;
-        // console.log(persons[i])
+    //create xmlhttprequest class's object: 
+    let xhr = new XMLHttpRequest();
 
-        for (x in persons[i]){
-            console.log(persons[i][x])
+    //load data by open class: 
+    xhr.open('GET','data.txt',true);
+
+    xhr.onload = function(){
+        // HTTP statuses
+        // 200: "OK"
+        // 403: "Forbidden"
+        // 404: "Not Found"
+
+        if (this.status === 200){
+            //console.log(this.status)
+            document.getElementById('output').innerHTML = `<h4>${this.responseText}</h4?`
         }
-    }
 
+    }
+    xhr.send();
+    // console.log(xhr)
 }
+
