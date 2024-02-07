@@ -1,49 +1,14 @@
+document.getElementById("get_data").addEventListener('click',Loadjoke);
 
-//Asynchronous Programming 
-// AJAX = Asynchoronous Javascript and XML
-//get data without loading the page
-
-document.getElementById('get_data').addEventListener('click', loadData);
-
-function loadData(){
-
-    //create xmlhttprequest class's object: 
+function Loadjoke(){
     let xhr = new XMLHttpRequest();
 
-    xhr.onprogress = function(){
-        console.log(xhr.readyState);
-    }
+    xhr.open('GET','http://api.icndb.com/jokes/random',true);
 
-    //load data by open class: 
-    xhr.open('GET','data.txt',true);
-
-    xhr.onload = function(){
-        // HTTP statuses
-        // 200: "OK"
-        // 403: "Forbidden"
-        // 404: "Not Found"
-
+    xhr.onload =  () => {
         if (this.status === 200){
-            //console.log(this.status)
-            document.getElementById('output').innerHTML = `<h4>${this.responseText}</h4>`
+            console.log(this.responsText);
         }
-
     }
-    xhr.onreadystatechange = function(){
-           //     // readyState Values
-    //     // 0: request not initialized
-    //     // 1: server connection established
-    //     // 2: request received
-    //     // 3: processing request
-    //     // 4: request finished and response is ready
-    console.log(this.readyState)
-    if (this.status === 200 && this.readyState === 4){
-        console.log(this.responseText)
-    }
-
-    }
-
     xhr.send();
-    // console.log(xhr)
 }
-
