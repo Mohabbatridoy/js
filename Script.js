@@ -1,19 +1,22 @@
-//Callback Function;
-//setTimeout -- run code in delay. 
-// setTimeout(() => {
-//     console.log("hello world")
-// }, 5000);
+//promises: 
 
 let persons = [
     {firstName: "Mohabbt", LastName: "Hossain"},
     {firstName: "Rezwan", LastName: "Haque"}
 ];
 
-function createPerson(person,callback){
-    setTimeout(() => {
+function createPerson(person){
+    let prom = new Promise(function(resolve,reject){
         persons.push(person);
-        callback();
-    }, 2000);
+        let error = false;
+        if (error!=true){
+            resolve();
+        }
+        else{
+            reject(`error somthing wrong`);
+        }
+    })
+    return prom;
 }
 
 function getPerson(){
@@ -25,4 +28,6 @@ function getPerson(){
     }, 500);
 }
 
-createPerson({firstName: "shahed", LastName: "Mitul"},getPerson);
+createPerson({firstName: "shahed", LastName: "Mitul"}).then(getPerson).catch(function(err){
+    console.log(err);
+});
