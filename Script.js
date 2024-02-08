@@ -1,14 +1,37 @@
-document.getElementById("get_data").addEventListener('click',Loadjoke);
+// https://api.api-ninjas.com/v1/jokes
+// API
+// RESTful API
 
-function Loadjoke(){
-    let xhr = new XMLHttpRequest();
+document.getElementById('get_jokes').addEventListener('click', loadJokes);
 
-    xhr.open('GET','http://api.icndb.com/jokes/random',true);
+function loadJokes(e) {
+  let number = document.getElementById('input').value;
+  //console.log(number);
+  let xhr = new XMLHttpRequest();
 
-    xhr.onload =  () => {
-        if (this.status === 200){
-            console.log(this.responsText);
-        }
+  xhr.open('GET', `https://api.api-ninjas.com/v1/jokes?limit=${number}`, true);
+  xhr.setRequestHeader('X-Api-Key', 'tdSI+SyBA+WwiH6ks2Sgsg==kFNInEG3v01rOLTk');
+
+  xhr.onloadstart = function () {
+    document.getElementById('output').innerHTML = '<h3>Loading......</h3>';
+  };
+
+  xhr.onload = function () {
+    console.log('loaded');
+    if (this.status === 200) {
+      let data = JSON.parse(this.responseText);
+      let jokes = data;
+      let output = '<ol>';
+
+      jokes.forEach(function (item) {
+        //console.log(item.joke);
+        output += `<li>${item.joke}</li>`;
+      });
+      output += '</ol>';
+
+      document.getElementById('output').innerHTML = output;
     }
-    xhr.send();
+  };
+
+  xhr.send();
 }
