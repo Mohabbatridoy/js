@@ -1,37 +1,28 @@
-// https://api.api-ninjas.com/v1/jokes
-// API
-// RESTful API
+//Callback Function;
+//setTimeout -- run code in delay. 
+// setTimeout(() => {
+//     console.log("hello world")
+// }, 5000);
 
-document.getElementById('get_jokes').addEventListener('click', loadJokes);
+let persons = [
+    {firstName: "Mohabbt", LastName: "Hossain"},
+    {firstName: "Rezwan", LastName: "Haque"}
+];
 
-function loadJokes(e) {
-  let number = document.getElementById('input').value;
-  //console.log(number);
-  let xhr = new XMLHttpRequest();
-
-  xhr.open('GET', `https://api.api-ninjas.com/v1/jokes?limit=${number}`, true);
-  xhr.setRequestHeader('X-Api-Key', 'tdSI+SyBA+WwiH6ks2Sgsg==kFNInEG3v01rOLTk');
-
-  xhr.onloadstart = function () {
-    document.getElementById('output').innerHTML = '<h3>Loading......</h3>';
-  };
-
-  xhr.onload = function () {
-    console.log('loaded');
-    if (this.status === 200) {
-      let data = JSON.parse(this.responseText);
-      let jokes = data;
-      let output = '<ol>';
-
-      jokes.forEach(function (item) {
-        //console.log(item.joke);
-        output += `<li>${item.joke}</li>`;
-      });
-      output += '</ol>';
-
-      document.getElementById('output').innerHTML = output;
-    }
-  };
-
-  xhr.send();
+function createPerson(person,callback){
+    setTimeout(() => {
+        persons.push(person);
+        callback();
+    }, 2000);
 }
+
+function getPerson(){
+    setTimeout(() => {
+        let output = '';
+        persons.forEach( function(person) {
+            output += `<li> ${person.firstName} ${person.LastName}</li>`;
+        }), document.getElementById('output').innerHTML = output;
+    }, 500);
+}
+
+createPerson({firstName: "shahed", LastName: "Mitul"},getPerson);
